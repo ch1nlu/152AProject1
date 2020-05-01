@@ -12,7 +12,8 @@ double negExp(double rate);//generate the negative-exp distributed time
 
 int main()
 {
-    double arrivalRate, serviceRate, MAXBUFFER;
+    double arrivalRate, serviceRate;
+    int MAXBUFFER;
     srand(time(NULL));
     cout << "MAXBUFFER size: ";
     cin >> MAXBUFFER;
