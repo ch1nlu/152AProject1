@@ -1,6 +1,6 @@
 #include <iostream>
-#include <stdlib.h>
-#include <cmath>
+#include "stdlib.h"
+#include "math.h"
 #include <time.h>
 
 
@@ -30,6 +30,6 @@ int main()
 
 double negExp(double rate){
     double u;
-    u = rand()% RAND_MAX /(double)RAND_MAX;
+    u = drand48();
     return ((-1 / rate) * log(1 - u));
 }
