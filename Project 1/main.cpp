@@ -19,7 +19,12 @@ double negExp2(){
     return ((-1) * log(1 - u));
 }
 
-
+double pareto(double rate)
+{
+	double u;
+	u = drand48();
+	return (1e-100)/(pow(u,1/rate));
+}
 
 int main()
 {
@@ -44,9 +49,9 @@ int main()
 
     Data Queue(MAXBUFFER);
 
-    for(int i = 0; i < 100; i++)
+    for(int i = 0; i < 10000; i++)
     {
-      arrival_time = negExp(lambda) + previous_time;
+      arrival_time = negExp/*pareto*/(lambda) + previous_time;
       GEL.insert(arrival_time, 0);
       previous_time = arrival_time;
     }
@@ -71,8 +76,8 @@ int main()
           (Queue.length)++;
           (Queue.queue[(Queue.length) - 1]).time = testing_node.time;
         }
-        else
-        {
+        else if(Queue.length == MAXBUFFER)
+        {	
           ++packs_dropped;
         }
       }
@@ -82,8 +87,10 @@ int main()
         {
           Queue.length = Queue.length - 1;
           if(Queue.length == 0)
-            idle_start = testing_node.time;
+	  {
+          idle_start = testing_node.time;
           depart_time = Queue.rmv_head();
+	  }
           if(depart_time !=0)
           {
             depart_time = depart_time + negExp2();
@@ -98,6 +105,8 @@ int main()
 
     cout <<"Packets dropped: " <<packs_dropped<< endl;
     cout <<"Average packets in queue: "<<(packs_in_queue/total_time)<< endl;
+    cout << "Theoretical value: " << (lambda*lambda)/(1 - lambda)<< endl;
     cout <<"Utilization: " <<(total_time - idle_time)/total_time<< endl;
+    cout << "Theoretical value: "<< lambda << endl;
 
 }
