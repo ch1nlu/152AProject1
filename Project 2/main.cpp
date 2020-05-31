@@ -21,7 +21,7 @@ int dataSizeGenerate(double lambda)
 
 int selectReceiver(int sender)
 {
-    int recvr = rand() % NUM_HOSTS+1;
+    int recvr = rand() % NUM_HOSTS+1; //labeling start from 1
     if(recvr == sender) return selectReceiver(sender);
     return recvr;
 }
