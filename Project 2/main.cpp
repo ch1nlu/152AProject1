@@ -26,6 +26,14 @@ int selectReceiver(int sender)
     return recvr;
 }
 
+
+int expBackoff(int collision) 
+{
+    int backoffTime = rand()% (int)pow(2,collision);
+    return backoffTime;
+}
+
+
 double negExp(double rate)//generate the negative-exp distributed time
 {
   double u;
