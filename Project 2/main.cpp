@@ -5,10 +5,26 @@
 #include <list>
 #include <queue>
 #include <ctime>
-
+#include <random>
+#include <time.h>
 using namespace std;
 
+#define NUM_HOSTS 10//Number of hosts, maybe better if set as an input
 int mu = 1;
+
+int dataSizeGenerate(double lambda)
+{
+    double u;
+    u = (rand()%10000)/10000.0;
+    return (int) ((-1/lambda) * log(1-u))%1544 ;
+}
+
+int selectReceiver(int sender)
+{
+    int recvr = rand() % NUM_HOSTS+1;
+    if(recvr == sender) return selectReceiver(sender);
+    return recvr;
+}
 
 double negExp(double rate)//generate the negative-exp distributed time
 {
