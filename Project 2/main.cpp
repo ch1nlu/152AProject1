@@ -5,35 +5,10 @@
 #include <list>
 #include <queue>
 #include <ctime>
-#include <random>
-#include <time.h>
+
 using namespace std;
 
-#define NUM_HOSTS 10//Number of hosts, maybe better if set as an input
 int mu = 1;
-
-int dataSizeGenerate(double mu) //where mu is pkt/sec
-{
-    double u;
-    u = (rand()%10000)/10000.0;
-    return (int) (-1000/mu * log(1-u))%1544 + 1;
-}
-
-int selectReceiver(int sender)
-{
-    int recvr = rand() % NUM_HOSTS+1; //labeling start from 1
-    if(recvr == sender) return selectReceiver(sender);
-    return recvr;
-}
-
-
-int expBackoff(int T, int collision) //T is the contention window size 
-{
-    int bkoff = rand() % T + 1;
-    int exp = rand()% (int)pow(2,collision) + 1;
-    return bkoff * exp;
-}
-
 
 double negExp(double rate)//generate the negative-exp distributed time
 {
