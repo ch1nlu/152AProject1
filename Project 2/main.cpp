@@ -12,11 +12,11 @@ using namespace std;
 #define NUM_HOSTS 10//Number of hosts, maybe better if set as an input
 int mu = 1;
 
-int dataSizeGenerate(double lambda) //where lambda is pkt/sec
+int dataSizeGenerate(double mu) //where mu is pkt/sec
 {
     double u;
     u = (rand()%10000)/10000.0;
-    return (int) (-1000/lambda * log(1-u))%1544 + 1;
+    return (int) (-1000/mu * log(1-u))%1544 + 1;
 }
 
 int selectReceiver(int sender)
