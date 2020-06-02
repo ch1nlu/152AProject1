@@ -27,10 +27,11 @@ int selectReceiver(int sender)
 }
 
 
-int expBackoff(int collision) // change the value of collision to manually vary the contention window size
+int expBackoff(int T, int collision) //T is the contention window size 
 {
-    int backoffTime = rand()% (int)pow(2,collision);
-    return backoffTime;
+    int bkoff = rand() % T + 1;
+    int exp = rand()% (int)pow(2,collision) + 1;
+    return bkoff * exp;
 }
 
 
