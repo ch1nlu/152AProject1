@@ -54,35 +54,6 @@ double negExp(double rate)//generate the negative-exp distributed time
   return((-1/rate) * log(1-u));
 }
 
-Event new_event(int type, int source, double time)
-{
-  Event test;
-  test.type = type;
-  test.source = source;
-  test.dest = rand() % num_hosts;
-  while(test.source == test.dest){
-    test.dest = rand() % num_hosts;
-  }
-  // first
-  if(type == 0){
-    test.time = time + negExp(lambda);
-  }
-  //
-  //back off
-  else if(type == 1){
-    test.time = time + negExp(mu);
-  }
-  // sense
-  else if(type == 2){
-    test.time = time + 0.01;
-  }
-  else{
-    cout << "Error"<<endl;
-  }
-  return test;
-}
-
-
 
 int main()
 {
@@ -114,42 +85,7 @@ int main()
 
   //Data Queue(MAXBUFFER); need to change to hosts
 
-  //Host initialized with variables
-  host hosts[num_hosts];
-  for(int = 0); i < num_hosts; i++){
-    Event Event1 = newEvent(0, i, time);
-    Event1.type2 - 0;
-    insert_GEL(Event1);
-    hosts[i].length = 0;
-    hosts[i].tot_length = 0;
-    hosts[i].dropped = 0;
-    hosts[i].N = 0;
-    hosts[i].trans_time = 0;
-    host[i].q_time = 0;
-    host[i].backoff = 0;
-}
-
-    for(int i = 0; i < num_packets; i++)
-    {
-      Event curr_event;
-      curr_event = GEL.front();
-      time = curr_event.time;
-
-      if(curr_event.type == 0){
-      //process beginning of arrival event
-      if(curr_event.type2 == 0){
-        //arrival event
-        Event new_arriv = new_event(0, curr_event.source, time)
-        new_arriv.type2 = 0;
-        insert_GEL(new_arriv);
-
-        //Create new packets
-        packet new_packet;
-        new_packet.size = negExp(mu);
-        new_packet.service_t = negExp(mu);
-
-        //departure event
-
+  
 
 
 
@@ -221,5 +157,8 @@ int main()
     GEL.deleting();
     i++;
   }*/
+}
+}
   cout << "Throughput: " <<tot_bytes/time << endl;
   cout << "Avg Network Delay: " << tot_delay/ (tot_bytes/time) << endl;
+}
