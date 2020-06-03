@@ -53,10 +53,12 @@ double negExp(double rate)//generate the negative-exp distributed time
   return((-1/rate) * log(1-u));
 }
 
+
+
 int main()
 {
   double MAXBUFFER = 1000000;
-  int num_packets = 100000
+  int num_packets = 100000;
   double lambda;
   double total_time;
   double arrival_time;
@@ -82,6 +84,36 @@ int main()
   cin >> T;
 
   //Data Queue(MAXBUFFER); need to change to hosts
+
+  host hosts[num_hosts];
+  for(int = 0); i < num_hosts; i++){
+    Event Event1 = newEvent(0, i, time);
+    Event1.type2 - 0;
+    insert_GEL(Event1);
+    hosts[i].length = 0;
+    hosts[i].tot_length = 0;
+    hosts[i].dropped = 0;
+    hosts[i].N = 0;
+    hosts[i].trans_time = 0;
+    host[i].q_time = 0;
+    hosts[i].backoff = 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   for(int i = 0; i < 100000; i++)
   {
