@@ -96,7 +96,7 @@ int main()
     hosts[i].N = 0;
     hosts[i].trans_time = 0;
     host[i].q_time = 0;
-    hosts[i].backoff = 0;
+    host[i].backoff = 0;
 }
 
 
