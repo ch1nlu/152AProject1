@@ -13,6 +13,7 @@ using namespace std;
 #define NUM_HOSTS 10//Number of hosts, maybe better if set as an input
 int mu = 1;
 
+//generate time and packet
 double transmissionTime(double rate){
     double r = negExpDist(rate) * 1544;
     while(r > 1544){
@@ -53,6 +54,34 @@ double negExp(double rate)//generate the negative-exp distributed time
   return((-1/rate) * log(1-u));
 }
 
+Event new_event(int type, int source, double time)
+{
+  Event test;
+  test.type = type;
+  test.source = source;
+  test.dest = rand() % num_hosts;
+  while(test.source == test.dest){
+    test.dest = rand() % num_hosts;
+  }
+  // first
+  if(type == 0){
+    test.time = time + negExp(lambda);
+  }
+  //
+  //back off
+  else if(type == 1){
+    test.time = time + negExp(mu);
+  }
+  // sense
+  else if(type == 2){
+    test.time = time + 0.01;
+  }
+  else{
+    cout << "Error"<<endl;
+  }
+  return test;
+}
+
 
 
 int main()
@@ -85,6 +114,7 @@ int main()
 
   //Data Queue(MAXBUFFER); need to change to hosts
 
+  //Host initialized with variables
   host hosts[num_hosts];
   for(int = 0); i < num_hosts; i++){
     Event Event1 = newEvent(0, i, time);
@@ -99,6 +129,26 @@ int main()
     host[i].backoff = 0;
 }
 
+    for(int i = 0; i < num_packets; i++)
+    {
+      Event curr_event;
+      curr_event = GEL.front();
+      time = curr_event.time;
+
+      if(curr_event.type == 0){
+      //process beginning of arrival event
+      if(curr_event.type2 == 0){
+        //arrival event
+        Event new_arriv = new_event(0, curr_event.source, time)
+        new_arriv.type2 = 0;
+        insert_GEL(new_arriv);
+
+        //Create new packets
+        packet new_packet;
+        new_packet.size = negExp(mu);
+        new_packet.service_t = negExp(mu);
+
+        //departure event
 
 
 
@@ -115,7 +165,7 @@ int main()
 
 
 
-  for(int i = 0; i < 100000; i++)
+/*  for(int i = 0; i < 100000; i++)
   {
     arrival_time = negExp(lambda) + previous_time; // maybe?
     GEL.insert(arrival_time, 0);
@@ -170,6 +220,6 @@ int main()
     }
     GEL.deleting();
     i++;
-  }
+  }*/
   cout << "Throughput: " <<tot_bytes/time << endl;
   cout << "Avg Network Delay: " << tot_delay/ (tot_bytes/time) << endl;
