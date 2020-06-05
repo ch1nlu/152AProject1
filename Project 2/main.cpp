@@ -84,6 +84,49 @@ int main()
   cin >> T;
 
   //Data Queue(MAXBUFFER); need to change to hosts
+    
+  //*************
+  
+  //the user will enter how many number of users
+  ////the user will enter the value of lambda
+
+
+  int number_of_users = 0;
+  int number_of_collisions = 0;
+  //create new acknowledge event
+
+  //create two queues 
+  //create arriving event
+  //insert the arriving event into gel
+  
+
+  for (int i = 0; i < 100000; i++) {
+    next_event_node = GEL.front_return(); //get the next event
+    if(next_event_node.type == 0) //it is an arriving event
+  //***get the transmission***
+    }
+  
+    else if (next_event_node.type == 1) {//it is an departing event
+    //a collision happens first
+      int number_of_collisions = 100 * drand48(); //random number 0 - 100
+      if(number_of_collisions <= 10){
+        number_of_collisions += 1; //I want to change this value forever here, maybe change to *number_of_collisions? 
+      }
+    //***get the transmission***
+    }
+    else if (next_event_node.type == 2){//it is an acknowledgement
+    //we need to put this event into our queue
+    }  
+    else if (next_event_node.type == 3){//acknowledge received
+    //
+        
+    }
+}
+
+
+//double throughput = number of bytes / current time;
+//double average_network_delay = time when server is busy / throughput;
+        
 
   
 
