@@ -54,6 +54,16 @@ double negExp(double rate)//generate the negative-exp distributed time
   return((-1/rate) * log(1-u));
 }
 
+void incrSIFS(double sifsIn){
+    int new_time = idle_time + sifsIn; //need to make sure idle_time is our current time
+    //we need to build a new event based on this new time right?
+    sensed_busy = sensed_busy + sifsIn;
+}
+void incrDIFS(double difsIn){
+    int new_time = idle_time + difsIn; //need to make sure idle_time is our current time
+    //we need to build a new event based on this new time right?
+    sensed_busy = sensed_busy + difsIn;
+}
 
 int main()
 {
@@ -72,7 +82,7 @@ int main()
   double SIFS = 0.05;
   int T;
   int num_hosts;
-
+  double sensed_busy;//the extra time added when a host is sensed busy
 
   Event GEL;
 
