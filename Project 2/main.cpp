@@ -15,9 +15,9 @@ int mu = 1;
 
 //generate time and packet
 double transmissionTime(double rate){
-    double r = negExpDist(rate) * 1544;
+    double r = negExp(rate) * 1544;
     while(r > 1544){
-        r = negExpDist(rate) * 1544;
+        r = negExp(rate) * 1544;
     }
     totalSent += r;
     double out  = (r*8.0)/11e6;
