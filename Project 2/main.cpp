@@ -65,6 +65,13 @@ void incrDIFS(double difsIn){
     sensed_busy = sensed_busy + difsIn;
 }
 
+void collision_chance(int* k){
+    int c = 100 * drand48(); //random number 0 - 100
+    if(c <= 20){
+        *k += 1;
+    }
+}
+
 int main()
 {
   double MAXBUFFER = 1000000;
