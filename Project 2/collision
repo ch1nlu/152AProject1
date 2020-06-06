@@ -1,0 +1,6 @@
+void collision_chance(int* k){
+    int c = 100 * drand48(); //random number 0 - 100
+    if(c <= "chance of collision not sure what we want that to be"){
+        *k += 1;
+    }
+}
